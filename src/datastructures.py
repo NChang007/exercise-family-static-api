@@ -1,4 +1,3 @@
-
 """
 update this file to implement the following already declared methods:
 - add_member: Should add a member to the self._members list
@@ -8,39 +7,53 @@ update this file to implement the following already declared methods:
 """
 from random import randint
 
-class Family:
-
+class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
 
         # example list of members
-        self._members = []
+        self._members = [
+            {
+                "id": self._generateId(),
+                "first_name": "Nelson",
+                "last_name": last_name
+            },
+            {
+                "id": self._generateId(),
+                "first_name": "Bianca",
+                "last_name": last_name
+            },
+            {
+                "id": self._generateId(),
+                "first_name": "Loki",
+                "last_name": last_name
+            }
+        ]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
-        return random.randint(0, 99999999) 
+        return randint(0, 99999999)
 
     def add_member(self, member):
         self._members.append(member)
-
-        pass
+        return True
 
     def delete_member(self, id):
+        # fill this method and update the return
         for position in range(len(self._members)):
             if self._members[position]["id"] == id:
                 self._members.pop(position)
-
-    def update_member(self, id, member):
-        ## you have to implement this method
-        ## loop the list and replace the member with the given id
-        pass
+                return True
+        
 
     def get_member(self, id):
+        # fill this method and update the return
         for m in self._members:
             if m["id"] == int(id):
                 return m
 
         return None
 
+    # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
